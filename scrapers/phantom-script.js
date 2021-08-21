@@ -4,25 +4,22 @@ const cheerio = require("cheerio");
 var system = require("system");
 var env = system.env;
 var page = require("webpage").create();
+var config = require("../config/config.json")
 
 phantom.addCookie({
-  'name'     : 'PHPSESSID5',   /* required property */
-  'value'    : '8b17d40cc345bfcacd16382b1e4d1886',  /* required property */
-  'domain'   : '.anatomystudy.ru',
+  'name'     : config.scrapper.phantomjs.auth.cookie.name,   /* required property */
+  'value'    : config.scrapper.phantomjs.auth.cookie.value,  /* required property */
+  'domain'   : config.scrapper.phantomjs.auth.cookie.domain,
   'path'     : '/',                /* required property */
   'httponly' : true,
   'secure'   : false,
   'expires'  : (new Date()).getTime() + (100000 * 60 * 60)   /* <-- expires in 100 hour */
 });
 
-page.settings.userAgent =
-  "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36";
+page.settings.userAgent = config.scrapper.phantomjs.webpage.settings.userAgent;
 
 // default viewport size is small, change it to 1366x768
-page.viewportSize = {
-  width: 1920,
-  height: 1080
-};
+page.viewportSize = config.scrapper.phantomjs.webpage.viewportSize;
 
 // open page
 page.open(env.URL, function(status) {

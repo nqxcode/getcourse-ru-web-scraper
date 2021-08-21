@@ -6,8 +6,8 @@ const childProcess = require("child_process");
 // path to PhantomJS bin
 const phantomJsPath = __dirname + '/../bin/phantomjs';
 
-exports.fetch = function(url, reject, resolve) {
-  console.log('Process for ' + url)
+exports.fetch = function(url) {
+  console.log(`Fetch ${url}`)
   // execute phantom-script.js file via PhantomJS
   const childArgs = [path.join(__dirname, "phantom-script.js")];
   const phantom = childProcess.execFile(phantomJsPath, childArgs, {
@@ -33,12 +33,15 @@ exports.fetch = function(url, reject, resolve) {
     console.log("uncaught exception: " + err);
   });
 
-  phantom.on("exit", function(exitCode) {
-    if (exitCode !== 0) {
-      return reject(stderr, url);
-    }
+  return new Promise((resolve, reject) => {
+        phantom.on("exit", (exitCode) => {
+          if (exitCode !== 0) {
+            return reject(stderr);
+          }
 
-    resolve(stdout, url);
-  });
+          resolve(stdout);
+        });
+      }
+  )
 };
 
