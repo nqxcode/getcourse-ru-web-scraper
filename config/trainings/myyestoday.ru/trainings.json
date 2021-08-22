@@ -38,5 +38,42 @@
       "/teach/control/lesson/view/id/178183624",
       "/teach/control/lesson/view/id/178183651"
     ]
+  },
+  {
+    "title": "Тренинги. Комплексный курс YesToday. ЛЕКСИКА",
+    "paths": [
+      "/teach/control/lesson/view/id/174699882",
+      "/teach/control/lesson/view/id/175138728",
+      "/teach/control/lesson/view/id/178261914",
+      "/teach/control/lesson/view/id/178263848",
+      "/teach/control/lesson/view/id/178264301",
+      "/teach/control/lesson/view/id/178265720",
+      "/teach/control/lesson/view/id/178265847",
+      "/teach/control/lesson/view/id/178266004",
+      "/teach/control/lesson/view/id/178266104",
+      "/teach/control/lesson/view/id/178379077",
+      "/teach/control/lesson/view/id/178379137",
+      "/teach/control/lesson/view/id/178379373",
+      "/teach/control/lesson/view/id/178379409",
+      "/teach/control/lesson/view/id/178379417",
+      "/teach/control/lesson/view/id/165438656",
+      "/teach/control/lesson/view/id/165438657",
+      "/teach/control/lesson/view/id/165438658",
+      "/teach/control/lesson/view/id/165438659",
+      "/teach/control/lesson/view/id/165438660",
+      "/teach/control/lesson/view/id/165438655"
+    ]
+  },
+  {
+    "title": "Тренинги → Комплексный курс YesToday. ФОНЕТИКА",
+    "paths": [
+      "/teach/control/lesson/view/id/165438661"
+    ]
+  },
+  {
+    "title": "Тренинги. Комплексный курс YesToday. ФИЛЬМЫ",
+    "paths": [
+      "/teach/control/lesson/view/id/165438671"
+    ]
   }
 ]
