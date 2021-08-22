@@ -1,5 +1,3 @@
-// scrapers/phantom-script.js
-
 const cheerio = require("cheerio");
 var system = require("system");
 var env = system.env;
@@ -7,9 +5,9 @@ var page = require("webpage").create();
 var config = require("../config/config.json")
 
 phantom.addCookie({
-  'name'     : config.scrapper.phantomjs.auth.cookie.name,   /* required property */
-  'value'    : config.scrapper.phantomjs.auth.cookie.value,  /* required property */
-  'domain'   : config.scrapper.phantomjs.auth.cookie.domain,
+  'name'     : env.SCRAPPER_AUTH_COOKIE_NAME,   /* required property */
+  'value'    : env.SCRAPPER_AUTH_COOKIE_VALUE,  /* required property */
+  'domain'   : env.SCRAPPER_AUTH_COOKIE_DOMAIN,
   'path'     : '/',                /* required property */
   'httponly' : true,
   'secure'   : false,

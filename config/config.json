@@ -1,14 +1,6 @@
 {
   "scrapper": {
-    "baseUrl": "https://myyestoday.ru",
     "phantomjs": {
-      "auth": {
-        "cookie": {
-          "name": "PHPSESSID5",
-          "value": "7b20ba0b0ebb95b7728e966daa3b5024",
-          "domain": ".myyestoday.ru"
-        }
-      },
       "webpage": {
         "settings": {
           "userAgent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36"
@@ -29,8 +21,7 @@
     "downloader": {
       "cmdTemplate": "youtube-dl -q --ffmpeg-location \"/usr/bin/ffmpeg\" \"{videoUrl}\" -o \"{outVideoPath}\" ",
       "outVideo": {
-        "extension": "mp4",
-        "rootPath": "/home/andrey/Рабочий стол/Курсы/Английский/myyestoday.ru/"
+        "extension": "mp4"
       }
     }
   }

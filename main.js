@@ -1,10 +1,11 @@
 const cheerio = require("cheerio");
+require('dotenv').config({ path: './.env' })
 const {fetch} = require("./scrapers/index.js");
 const {MD5} = require("./lib/md5");
 let config = require("./config/config.json")
-let trainings = require('./config/trainings.json');
+let trainings = require(`./config/trainings/${process.env.SCRAPPER_TRAINING_CONFIG_DIR}/config.json`);
 
-const baseURL = config.scrapper.baseUrl;
+const baseURL = process.env.SCRAPPER_BASE_URL;
 
 let reject = function (error) {
     console.log(error);
@@ -23,6 +24,7 @@ let resolve = function (html) {
     let lessonTitle = $("h2").first().text();
     let patterns = config.scrapper.parser.patterns;
 
+    let videoTotal = 0
     patterns.forEach(pattern => {
         let regex = new RegExp(pattern, config.scrapper.parser.flags)
         let bodyHtml = $('body').html()
@@ -37,7 +39,7 @@ let resolve = function (html) {
 
                 let videoName = lessonTitle.trim().replace(/\.$/, '') + (videoNumber > 1 ? `-${videoNumber}` : '');
                 let videoExtension = config.scrapper.downloader.outVideo.extension
-                let rootPath = config.scrapper.downloader.outVideo.rootPath
+                let rootPath = process.env.SCRAPPER_DOWNLOAD_PATH
                 let relativePath = outVideoDir
 
                 rootPath += rootPath.endsWith("/") ? "" : "/"
@@ -53,12 +55,15 @@ let resolve = function (html) {
                     console.log(cmd)
                     videoUrls[videoUrlHash] = videoUrl
                     videoNumber++
+                    videoTotal++
                 }
-            } else {
-                console.log(`No video on ${url}`)
             }
         } while ((matched = regex.exec(bodyHtml)) !== null)
     })
+
+    if (videoTotal === 0) {
+        console.log(`No video on ${url}`)
+    }
 };
 
 let trainingIndex = 0;
