@@ -3,7 +3,7 @@ require('dotenv').config({ path: './.env' })
 const {fetch} = require("./scrapers/index.js");
 const {MD5} = require("./lib/md5");
 let config = require("./config/config.json")
-let trainings = require(`./config/trainings/${process.env.SCRAPPER_TRAINING_CONFIG_DIR}/config.json`);
+let trainings = require(`./config/trainings/${process.env.SCRAPPER_TRAINING_CONFIG_DIR}/trainings.json`);
 
 const baseURL = process.env.SCRAPPER_BASE_URL;
 
