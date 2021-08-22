@@ -5,4 +5,4 @@ SCRAPPER_AUTH_COOKIE_NAME=PHPSESSID5
 SCRAPPER_AUTH_COOKIE_VALUE=8b17d40cc345bfcacd16382b1e4d1886
 SCRAPPER_AUTH_COOKIE_DOMAIN=.anatomystudy.ru
 
-SCRAPPER_DOWNLOAD_PATH=/home/andrey/Рабочий стол/Курсы/test2
+SCRAPPER_DOWNLOAD_PATH="/home/andrey/Рабочий стол/Курсы/anatomystudy.ru"
