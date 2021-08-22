@@ -35,7 +35,7 @@ let resolve = function (html) {
                 let videoUrl = matched['groups']['url']
                 let videoUrlHash = MD5(videoUrl);
 
-                let videoName = lessonTitle + (videoNumber > 1 ? `-${videoNumber}` : '');
+                let videoName = lessonTitle.trim() + (videoNumber > 1 ? `-${videoNumber}` : '');
                 let videoExtension = config.scrapper.downloader.outVideo.extension
                 let rootPath = config.scrapper.downloader.outVideo.rootPath
                 let relativePath = outVideoDir
