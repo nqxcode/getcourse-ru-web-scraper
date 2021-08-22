@@ -25,8 +25,6 @@ let resolve = function (html) {
     let regex = new RegExp(config.scrapper.parser.pattern, config.scrapper.parser.flags)
     let bodyHtml = $('body').html()
 
-    bodyHtml = bodyHtml + bodyHtml
-
     let videoUrls = {}
     let matched = regex.exec(bodyHtml);
     let videoNumber = 1;
