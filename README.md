@@ -2,16 +2,18 @@
 Web scraper for getcourse.ru
 
 ## Конфигурация
-Изменить настройки можно в файле ```config/config.json```. 
+Базовые настройки можно изменить в файле ```config/config.json```. 
 
-Основные настройки:
+Основные настройки в файле ```.env```, пример:
 ```
-scrapper.baseUrl
-scrapper.phantomjs.auth.cookie.name
-scrapper.phantomjs.auth.cookie.value
-scrapper.phantomjs.auth.cookie.domain
-scrapper.parser.pattern
-scrapper.downloader.outVideo.rootPath
+SCRAPPER_BASE_URL=https://myyestoday.ru
+SCRAPPER_TRAINING_CONFIG_DIR=myyestoday.ru
+
+SCRAPPER_AUTH_COOKIE_NAME=PHPSESSID5
+SCRAPPER_AUTH_COOKIE_VALUE=7b20ba0b0ebb95b7728e966daa3b5024
+SCRAPPER_AUTH_COOKIE_DOMAIN=.myyestoday.ru
+
+SCRAPPER_DOWNLOAD_PATH="/home/andrey/Рабочий стол/Курсы/Английский/myyestoday.ru"
 ```
 ## Логирование 
 Подробные логи см. в директории ```logs```
