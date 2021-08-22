@@ -20,5 +20,5 @@ SCRAPPER_DOWNLOAD_PATH="/home/andrey/Рабочий стол/Курсы/Англ
 
 ## Запуск скачивания видео
 ```bash
-./run
+./сmd/run.sh
 ```
