@@ -20,52 +20,55 @@ let resolve = function (html) {
     let outVideoDir = this.outVideoDir
 
     const $ = cheerio.load(html);
-    let lessonTitle = $("h2").text();
+    let lessonTitle = $("h2").first().text();
+    let patterns = config.scrapper.parser.patterns;
 
-    let regex = new RegExp(config.scrapper.parser.pattern, config.scrapper.parser.flags)
-    let bodyHtml = $('body').html()
+    patterns.forEach(pattern => {
+        let regex = new RegExp(pattern, config.scrapper.parser.flags)
+        let bodyHtml = $('body').html()
 
-    let videoUrls = {}
-    let matched = regex.exec(bodyHtml);
-    let videoNumber = 1;
-    do {
-        if (matched && typeof matched['groups'] !== 'undefined' && typeof matched['groups']['url'] !== 'undefined') {
-            let videoUrl = matched['groups']['url']
-            let videoUrlHash = MD5(videoUrl);
+        let videoUrls = {}
+        let matched = regex.exec(bodyHtml);
+        let videoNumber = 1;
+        do {
+            if (matched && typeof matched['groups'] !== 'undefined' && typeof matched['groups']['url'] !== 'undefined') {
+                let videoUrl = matched['groups']['url']
+                let videoUrlHash = MD5(videoUrl);
 
-            let videoName = lessonTitle + (videoNumber > 1 ? `-${videoNumber}` : '');
-            let videoExtension = config.scrapper.downloader.outVideo.extension
-            let rootPath = config.scrapper.downloader.outVideo.rootPath
-            let relativePath = outVideoDir
+                let videoName = lessonTitle + (videoNumber > 1 ? `-${videoNumber}` : '');
+                let videoExtension = config.scrapper.downloader.outVideo.extension
+                let rootPath = config.scrapper.downloader.outVideo.rootPath
+                let relativePath = outVideoDir
 
-            rootPath += rootPath.endsWith("/") ? "" : "/"
-            relativePath += relativePath.endsWith("/") ? "" : "/"
+                rootPath += rootPath.endsWith("/") ? "" : "/"
+                relativePath += relativePath.endsWith("/") ? "" : "/"
 
-            let outVideoPath = `${rootPath}${relativePath}${videoName}.${videoExtension}`
+                let outVideoPath = `${rootPath}${relativePath}${videoName}.${videoExtension}`
 
-            if (videoUrls[videoUrlHash] === undefined) {
-                let cmd = config.scrapper.downloader.cmdTemplate
-                    .replace('{videoUrl}', videoUrl)
-                    .replace('{outVideoPath}', outVideoPath)
+                if (videoUrls[videoUrlHash] === undefined) {
+                    let cmd = config.scrapper.downloader.cmdTemplate
+                        .replace('{videoUrl}', videoUrl)
+                        .replace('{outVideoPath}', outVideoPath)
 
-                console.log(cmd)
-                videoUrls[videoUrlHash] = videoUrl
-                videoNumber++
+                    console.log(cmd)
+                    videoUrls[videoUrlHash] = videoUrl
+                    videoNumber++
+                }
+            } else {
+                console.log(`No video on ${url}`)
             }
-        } else {
-            console.log(`No video on ${url}`)
-        }
-    } while ((matched = regex.exec(bodyHtml)) !== null)
+        } while ((matched = regex.exec(bodyHtml)) !== null)
+    })
 };
 
 let trainingIndex = 0;
 let fetchAll = function (training) {
-    console.log(`Training ${trainingIndex+1} from ${trainings.length}: "${training.title}"`)
+    console.log(`Training ${trainingIndex + 1} from ${trainings.length}: "${training.title}"`)
 
     let outVideoDir = training.title
-            .replace(/[^a-zA-Zа-яА-Я0-9-_.,]/g, ' ')
-            .replace(/\s+/g, ' ')
-            .replace(/\.\s+/g, '/')
+        .replace(/[^a-zA-Zа-яА-Я0-9-_.,]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .replace(/\.\s+/g, '/')
     let paths = training.paths
 
     let requests = paths.map(path => {

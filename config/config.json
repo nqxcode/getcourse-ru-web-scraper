@@ -1,12 +1,12 @@
 {
   "scrapper": {
-    "baseUrl": "https://anatomystudy.ru",
+    "baseUrl": "https://myyestoday.ru",
     "phantomjs": {
       "auth": {
         "cookie": {
           "name": "PHPSESSID5",
-          "value": "8b17d40cc345bfcacd16382b1e4d1886",
-          "domain": ".anatomystudy.ru"
+          "value": "7b20ba0b0ebb95b7728e966daa3b5024",
+          "domain": ".myyestoday.ru"
         }
       },
       "webpage": {
@@ -20,14 +20,17 @@
       }
     },
     "parser": {
-      "pattern": "data-master=\"(?<url>[^\"]+)\"",
+      "patterns": [
+        "data-master=\"(?<url>[^\"]+)\"",
+        "href=\"(?<url>(https?\\:)?(//)?www.youtube.com/watch[^\"]+)"
+      ],
       "flags": "g"
     },
     "downloader": {
       "cmdTemplate": "youtube-dl -q --ffmpeg-location \"/usr/bin/ffmpeg\" \"{videoUrl}\" -o \"{outVideoPath}\" ",
       "outVideo": {
         "extension": "mp4",
-        "rootPath": "/home/andrey/Рабочий стол/Курсы/Массаж, лечение/anatomystudy.ru/"
+        "rootPath": "/home/andrey/Рабочий стол/Курсы/Английский/myyestoday.ru/"
       }
     }
   }
