@@ -19,8 +19,8 @@ SCRAPPER_AUTH_COOKIE_DOMAIN=.myyestoday.ru
 SCRAPPER_DOWNLOAD_PATH="/home/andrey/Рабочий стол/Курсы/Английский/myyestoday.ru"
 ```
 
-### Настройка браузера phantomjs
-Базовые настройки headless браузера заданы в файле ```config/config.json```. Менять не обязательно.
+### Настройка браузера phantomjs (менять не обязательно)
+Базовые настройки headless браузера заданы в файле ```config/config.json```.
 
 ### Urls для веб-скрапинга
 Адреса для веб-скрапинга задаются в файлах ```trainings.json```, создаваемых в директориях ```/config/trainings/{директория-конфига-для-сайта}```, где ```{директория-конфига-для-сайта}``` - значение из параметра ```SCRAPPER_TRAINING_CONFIG_DIR``` из файла ```.env```.
