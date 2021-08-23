@@ -4,6 +4,8 @@ Web scraper for getcourse.ru
 ## Конфигурация
 Базовые настройки можно изменить в файле ```config/config.json```. 
 
+Файлы конфигурации ```trainings.json``` для веб-скрапинга нужно создавать в директориях ```/config/trainings/{директория конфига для сайта}```, где ```{директория конфига для сайта}``` задается в параметре ```SCRAPPER_TRAINING_CONFIG_DIR``` в файле ```.env```.
+ 
 Основные настройки в файле ```.env```, пример:
 ```
 SCRAPPER_BASE_URL=https://myyestoday.ru
