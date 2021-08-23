@@ -7,6 +7,26 @@ Web scraper for getcourse.ru
 
 ### Urls для веб-скрапинга
 Адреса для веб-скрапинга задаются в файлах ```trainings.json```, создаваемых в директориях ```/config/trainings/{директория-конфига-для-сайта}```, где ```{директория-конфига-для-сайта}``` - значение из параметра ```SCRAPPER_TRAINING_CONFIG_DIR``` из файла ```.env```.
+
+Пример файла конфига: ```config/trainings/anatomystudy.ru/trainings.json```:
+```json
+[
+  {
+    "title": "Тренинги. Бонусные курсы №2. Тело человека Мышцы. Голова и шея",
+    "paths": [
+      "/teach/control/lesson/view/id/157209236",
+      "/teach/control/lesson/view/id/157209275"
+    ]
+  },
+  {
+    "title": "Тренинги. Бонусные курсы №2. Тело человека. Мышцы плечевого пояса",
+    "paths":[
+      "/teach/control/lesson/view/id/157209372",
+      "/teach/control/lesson/view/id/157215322"
+    ]
+  }
+]
+```
  
 Основные настройки в файле ```.env```, пример:
 ```
