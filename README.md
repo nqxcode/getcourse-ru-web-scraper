@@ -1,5 +1,5 @@
 # getcourse-ru-web-scraper
-Web scraper for getcourse.ru
+Web scraper для видеокурсов с getcourse.ru
 
 ## Конфигурация
 ### Создание файла конфигурации
