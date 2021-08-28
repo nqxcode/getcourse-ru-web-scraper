@@ -8,6 +8,7 @@ exports.fetch = function(url) {
   console.log(`Fetch ${url}`)
   // execute phantom-script.js file via PhantomJS
   const childArgs = [path.join(__dirname, "phantom-script.js")];
+  let maxBuffer = process.env.SCRAPPER_PHANTOMJS_MAX_BUFFER
   const phantom = childProcess.execFile(phantomJsPath, childArgs, {
     env: {
       URL: url,
@@ -15,7 +16,7 @@ exports.fetch = function(url) {
       SCRAPPER_AUTH_COOKIE_VALUE: process.env.SCRAPPER_AUTH_COOKIE_VALUE,
       SCRAPPER_AUTH_COOKIE_DOMAIN: process.env.SCRAPPER_AUTH_COOKIE_DOMAIN
     },
-    maxBuffer: 2048 * 1024 * 1024 * 1024
+    maxBuffer: (maxBuffer ? maxBuffer : 1024) * 1024 * 1024 // in megabytes
   });
 
   let stdout = "";
