@@ -1,9 +1,9 @@
 const cheerio = require("cheerio");
-require('dotenv').config({ path: './.env' })
-const {fetch} = require("./scrapers/index.js");
-const {MD5} = require("./lib/md5");
-let config = require("./config/config.json")
-let trainings = require(`./config/trainings/${process.env.SCRAPPER_TRAINING_CONFIG_DIR}/trainings.json`);
+require('dotenv').config({ path: __dirname + '/.env' })
+const {fetch} = require(__dirname + "/scrapers/index.js");
+const {MD5} = require(__dirname + "/lib/md5");
+let config = require(__dirname + "/config/config.json")
+let trainings = require(__dirname + `/config/trainings/${process.env.SCRAPPER_TRAINING_CONFIG_DIR}/trainings.json`);
 
 const baseURL = process.env.SCRAPPER_BASE_URL;
 
