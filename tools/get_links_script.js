@@ -1,0 +1,1 @@
+$('.link.title').map(function(i, v) { return $(v).attr('href');} ).toArray()
