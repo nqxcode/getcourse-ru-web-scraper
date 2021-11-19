@@ -1,0 +1,1 @@
+mkdir -p compressed && find . *.mp4 -exec ffmpeg -i {} -vf "scale=trunc(iw/4)*2:trunc(ih/4)*2" -c:v libx265 -crf 28 compressed/{} \;
