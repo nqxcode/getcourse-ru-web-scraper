@@ -51,3 +51,14 @@ SCRAPPER_DOWNLOAD_PATH="/home/andrey/Рабочий стол/Курсы/Англ
 ```bash
 ./сmd/run.sh
 ```
+
+## Troubleshooting 
+Для исправления проблемы с зависимостью libpng12 для phantomjs читать статью 
+*["Fix libpng12-0 Missing In Ubuntu 18.04, 19.10, 20.04 Or 20.10"](https://www.linuxuprising.com/2018/05/fix-libpng12-0-missing-in-ubuntu-1804.html)*
+
+Или можно сразу выполнить следующие шаги: 
+```bash
+sudo add-apt-repository ppa:linuxuprising/libpng12
+sudo apt update
+sudo apt install libpng12-0
+```
