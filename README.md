@@ -1,6 +1,14 @@
 # getcourse-ru-web-scraper
 Web scraper для видеокурсов с getcourse.ru
 
+## Установка зависимостей 
+Для работы веб-скрапера необходимо установить **nodejs**, **ffmpeg**, **yt-dlp** 
+
+```bash
+$ apt install ffmpeg
+$ python3 -m pip install -U yt-dlp
+```
+
 ## Конфигурация
 ### Создание файла конфигурации
 Необходимо создать файл конфигурации ```.env``` на основе примера:

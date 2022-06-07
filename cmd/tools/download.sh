@@ -16,7 +16,7 @@ if [[ -z "$download_log" ]]; then
 fi
 
 tail -f "$file" | while read line ; do
-    cmd=`echo "$line" | grep youtube-dl`
+    cmd=`echo "$line" | grep yt-dlp`
     if [[ ! -z "$cmd" ]]; then
       echo "$cmd" >> "$download_log"
       eval "$cmd"

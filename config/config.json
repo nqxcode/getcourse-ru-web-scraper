@@ -19,7 +19,7 @@
       "flags": "g"
     },
     "downloader": {
-      "cmdTemplate": "youtube-dl -q --ffmpeg-location \"/usr/bin/ffmpeg\" \"{videoUrl}\" -o \"{outVideoPath}\" ",
+      "cmdTemplate": "yt-dlp -q --ffmpeg-location \"/usr/bin/ffmpeg\" \"{videoUrl}\" -o \"{outVideoPath}\" ",
       "outVideo": {
         "extension": "mp4"
       }
