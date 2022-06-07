@@ -5,7 +5,8 @@ Web scraper для видеокурсов с getcourse.ru
 Для работы веб-скрапера необходимо установить **nodejs**, **ffmpeg**, **yt-dlp** 
 
 ```bash
-$ apt install ffmpeg
+$ sudo apt install nodejs
+$ sudo apt install ffmpeg
 $ python3 -m pip install -U yt-dlp
 ```
 
