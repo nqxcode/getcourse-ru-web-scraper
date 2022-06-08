@@ -1,8 +1,6 @@
 FROM arm32v7/ubuntu:xenial
 
-
 USER root
-
 
 ENV PACKAGES="bash \
     bash-completion \
@@ -69,22 +67,22 @@ ENV PATH $PATH:/home/webscraper/.node-bin
 
 COPY ./.npmrc /root/.npmrc
 COPY ./.npmrc /home/webscraper/.npmrc
+RUN chown webscraper:webscraper /home/webscraper/.npmrc
 
+COPY ./package.json /home/webscraper/app/package.json
+COPY ./package-lock.json /home/webscraper/app/package-lock.json
+COPY ./.env.sample /home/webscraper/app/.env
+ADD ./scrapers /home/webscraper/app/scrapers
+ADD ./lib /home/webscraper/app/lib
+ADD ./config /home/webscraper/app/config
+ADD ./cmd /home/webscraper/app/cmd
+ADD ./bin /home/webscraper/app/bin
+ADD ./main.js /home/webscraper/app/main.js
 
-COPY ./package.json /home/webscraper/package.json
-COPY ./package-lock.json /home/webscraper/package-lock.json
-COPY ./.env.sample /home/webscraper/.env
-ADD ./scrapers /home/webscraper/scrapers
-ADD ./lib /home/webscraper/lib
-ADD ./config /home/webscraper/config
-ADD ./cmd /home/webscraper/cmd
-ADD ./bin /home/webscraper/bin
-ADD ./main.js /home/webscraper/main.js
-
-RUN chown -R webscraper:webscraper /home/webscraper/
+RUN chown -R webscraper:webscraper /home/webscraper/app
 
 USER webscraper
-WORKDIR /home/webscraper
+WORKDIR /home/webscraper/app
 RUN mkdir log
 
 RUN npm install
