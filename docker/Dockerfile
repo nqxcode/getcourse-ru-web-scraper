@@ -2,7 +2,6 @@ FROM arm32v7/ubuntu:xenial
 
 ENV NVM_DIR /home/webscraper/.nvm
 ENV NODE_VERSION=12.22.1
-ENV NPM_REGISTRY=
 ENV NPM_FETCH_RETRIES=2
 ENV NPM_FETCH_RETRY_FACTOR=10
 ENV NPM_FETCH_RETRY_MINTIMEOUT=10000
@@ -38,9 +37,6 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash 
     && npm config set fetch-retry-factor ${NPM_FETCH_RETRY_FACTOR} \
     && npm config set fetch-retry-mintimeout ${NPM_FETCH_RETRY_MINTIMEOUT} \
     && npm config set fetch-retry-maxtimeout ${NPM_FETCH_RETRY_MAXTIMEOUT} \
-    && if [ ${NPM_REGISTRY} ]; then \
-    npm config set registry ${NPM_REGISTRY} \
-    ;fi \
     && ln -s `npm bin --global` /home/webscraper/.node-bin \
 
 
