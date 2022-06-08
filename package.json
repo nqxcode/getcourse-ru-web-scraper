@@ -1,18 +1,16 @@
 {
-  "name": "anatomystudy.ru",
+  "name": "webscraper.ru",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Web-scraper for getcourse.ru",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["webscraper", "parser", "node", "phantomjs"],
+  "author": "Andrey Pokoev",
+  "license": "MIT",
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
     "cheerio": "^1.0.0-rc.5",
-    "dotenv": "^10.0.0",
-    "phantomjs-prebuilt": "^2.1.16"
+    "dotenv": "^10.0.0"
   }
 }
