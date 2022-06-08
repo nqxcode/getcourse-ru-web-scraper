@@ -1,4 +1,4 @@
-FROM arm32v7/ubuntu:xenial
+FROM arm32v7/ubuntu:focal
 
 USER root
 
@@ -13,13 +13,26 @@ ENV PACKAGES="bash \
     coreutils \
     sudo \
     build-essential \
-    libssl1.0.0 \
-    libpng12-0 \
-    libicu55 \
     ca-certificates \
+    software-properties-common \
     "
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y --no-install-recommends ${PACKAGES}
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends ${PACKAGES}
+
+RUN apt-get install -y --no-install-recommends libicu66
+
+#RUN add-apt-repository ppa:linuxuprising/libpng12
+#RUN apt-get update
+#RUN apt-get install -y --no-install-recommends libpng12
+
+
+#RUN echo "deb http://security.ubuntu.com/ubuntu bionic-security main" >> /etc/apt/sources.list
+#RUN echo "deb http://security.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list
+#RUN apt-get update -y
+#RUN apt-cache policy libssl1.0
+#RUN apt-get install -y --no-install-recommends libssl1.0
 
 
 ARG USER_GID=1000
@@ -83,7 +96,7 @@ RUN chown -R webscraper:webscraper /home/webscraper/app
 
 USER webscraper
 WORKDIR /home/webscraper/app
-RUN mkdir log
+RUN mkdir logs
 
 RUN npm install
 
