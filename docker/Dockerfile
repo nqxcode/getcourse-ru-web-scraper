@@ -1,11 +1,8 @@
 FROM arm32v7/ubuntu:xenial
 
-ENV NVM_DIR /home/webscraper/.nvm
-ENV NODE_VERSION=12.22.1
-ENV NPM_FETCH_RETRIES=2
-ENV NPM_FETCH_RETRY_FACTOR=10
-ENV NPM_FETCH_RETRY_MINTIMEOUT=10000
-ENV NPM_FETCH_RETRY_MAXTIMEOUT=60000
+
+USER root
+
 
 ENV PACKAGES="bash \
     bash-completion \
@@ -27,19 +24,6 @@ ENV PACKAGES="bash \
 RUN apt-get update && apt-get install -y --no-install-recommends ${PACKAGES}
 
 
-RUN mkdir -p $NVM_DIR && \
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash \
-    && . $NVM_DIR/nvm.sh \
-    && nvm install ${NODE_VERSION} \
-    && nvm use ${NODE_VERSION} \
-    && nvm alias ${NODE_VERSION} \
-    && npm config set fetch-retries ${NPM_FETCH_RETRIES} \
-    && npm config set fetch-retry-factor ${NPM_FETCH_RETRY_FACTOR} \
-    && npm config set fetch-retry-mintimeout ${NPM_FETCH_RETRY_MINTIMEOUT} \
-    && npm config set fetch-retry-maxtimeout ${NPM_FETCH_RETRY_MAXTIMEOUT} \
-    && ln -s `npm bin --global` /home/webscraper/.node-bin \
-
-
 ARG USER_GID=1000
 ARG USER_UID=1000
 
@@ -53,6 +37,38 @@ RUN addgroup --gid ${USER_GID} webscraper \
 RUN apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+USER webscraper
+
+ENV NVM_DIR /home/webscraper/.nvm
+ENV NODE_VERSION=12.22.1
+ENV NPM_FETCH_RETRIES=2
+ENV NPM_FETCH_RETRY_FACTOR=10
+ENV NPM_FETCH_RETRY_MINTIMEOUT=10000
+ENV NPM_FETCH_RETRY_MAXTIMEOUT=60000
+
+RUN mkdir -p $NVM_DIR && \
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install ${NODE_VERSION} \
+    && nvm use ${NODE_VERSION} \
+    && nvm alias ${NODE_VERSION} \
+    && npm config set fetch-retries ${NPM_FETCH_RETRIES} \
+    && npm config set fetch-retry-factor ${NPM_FETCH_RETRY_FACTOR} \
+    && npm config set fetch-retry-mintimeout ${NPM_FETCH_RETRY_MINTIMEOUT} \
+    && npm config set fetch-retry-maxtimeout ${NPM_FETCH_RETRY_MAXTIMEOUT} \
+    && ln -s `npm bin --global` /home/webscraper/.node-bin
+
+RUN echo "" >> ~/.bashrc && \
+    echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc && \
+    echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.bashrc
+
+USER root
+
+ENV PATH $PATH:/home/webscraper/.node-bin
+
+COPY ./.npmrc /root/.npmrc
+COPY ./.npmrc /home/webscraper/.npmrc
 
 
 COPY ./package.json /home/webscraper/package.json
