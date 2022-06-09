@@ -14,26 +14,20 @@ ENV PACKAGES="bash \
     sudo \
     build-essential \
     ca-certificates \
-    software-properties-common \
     "
-ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends ${PACKAGES}
 
-RUN apt-get install -y --no-install-recommends libicu66
+RUN apt-get install -y --no-install-recommends ffmpeg
+RUN apt-get install -y --no-install-recommends python3
 
-#RUN add-apt-repository ppa:linuxuprising/libpng12
-#RUN apt-get update
-#RUN apt-get install -y --no-install-recommends libpng12
+RUN wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
+RUN chmod a+rx /usr/local/bin/yt-dlp
 
-
-#RUN echo "deb http://security.ubuntu.com/ubuntu bionic-security main" >> /etc/apt/sources.list
-#RUN echo "deb http://security.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list
-#RUN apt-get update -y
-#RUN apt-cache policy libssl1.0
-#RUN apt-get install -y --no-install-recommends libssl1.0
-
+ADD ./deps /tmp/deps
+RUN dpkg -i /tmp/deps/libssl1.0.2_1.0.2u-1~deb9u1_armhf.deb
+RUN dpkg -i /tmp/deps/libicu57_57.1-6+deb9u4_armhf.deb
 
 ARG USER_GID=1000
 ARG USER_UID=1000
@@ -47,12 +41,13 @@ RUN addgroup --gid ${USER_GID} webscraper \
 
 RUN apt-get -y autoremove \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /tmp/deps
 
 USER webscraper
 
 ENV NVM_DIR /home/webscraper/.nvm
-ENV NODE_VERSION=12.22.1
+ENV NODE_VERSION=16.8.0
 ENV NPM_FETCH_RETRIES=2
 ENV NPM_FETCH_RETRY_FACTOR=10
 ENV NPM_FETCH_RETRY_MINTIMEOUT=10000
@@ -92,6 +87,7 @@ ADD ./cmd /home/webscraper/app/cmd
 ADD ./bin /home/webscraper/app/bin
 ADD ./main.js /home/webscraper/app/main.js
 
+RUN chmod a+rx /home/webscraper/app/bin/phantomjs
 RUN chown -R webscraper:webscraper /home/webscraper/app
 
 USER webscraper
