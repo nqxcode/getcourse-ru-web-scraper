@@ -2,6 +2,13 @@ FROM arm32v7/ubuntu:focal
 
 USER root
 
+ARG TZ=UTC
+ENV TZ ${TZ}
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+ENV DEBIAN_FRONTEND=noninteractive
+
 ENV PACKAGES="bash \
     bash-completion \
     wget \
@@ -15,19 +22,21 @@ ENV PACKAGES="bash \
     build-essential \
     ca-certificates \
     "
-
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends ${PACKAGES}
 
 RUN apt-get install -y --no-install-recommends ffmpeg
 RUN apt-get install -y --no-install-recommends python3
-
-RUN wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
-RUN chmod a+rx /usr/local/bin/yt-dlp
+RUN apt-get install -y --no-install-recommends screen
+RUN apt-get install -y --no-install-recommends dialog
 
 ADD ./deps /tmp/deps
+
 RUN dpkg -i /tmp/deps/libssl1.0.2_1.0.2u-1~deb9u1_armhf.deb
 RUN dpkg -i /tmp/deps/libicu57_57.1-6+deb9u4_armhf.deb
+
+COPY ./deps/yt-dlp /usr/local/bin/yt-dlp
+RUN chmod a+rx /usr/local/bin/yt-dlp
 
 ARG USER_GID=1000
 ARG USER_UID=1000
@@ -79,7 +88,6 @@ RUN chown webscraper:webscraper /home/webscraper/.npmrc
 
 COPY ./package.json /home/webscraper/app/package.json
 COPY ./package-lock.json /home/webscraper/app/package-lock.json
-COPY ./.env.sample /home/webscraper/app/.env
 ADD ./scrapers /home/webscraper/app/scrapers
 ADD ./lib /home/webscraper/app/lib
 ADD ./config /home/webscraper/app/config
@@ -88,6 +96,8 @@ ADD ./bin /home/webscraper/app/bin
 ADD ./main.js /home/webscraper/app/main.js
 
 RUN chmod a+rx /home/webscraper/app/bin/phantomjs
+RUN mkdir -p download
+
 RUN chown -R webscraper:webscraper /home/webscraper/app
 
 USER webscraper
