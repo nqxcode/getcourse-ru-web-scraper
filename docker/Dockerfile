@@ -32,7 +32,7 @@ RUN apt-get install -y --no-install-recommends dialog
 
 ADD ./deps /tmp/deps
 
-RUN dpkg -i /tmp/deps/libssl1.0.2_1.0.2u-1~deb9u1_armhf.deb
+RUN dpkg -i /tmp/deps/libssl1.0.0_1.0.2n-1ubuntu5_armhf.deb
 RUN dpkg -i /tmp/deps/libicu57_57.1-6+deb9u4_armhf.deb
 
 COPY ./deps/yt-dlp /usr/local/bin/yt-dlp

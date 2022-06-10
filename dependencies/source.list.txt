@@ -1,3 +1,5 @@
 http://ftp.cz.debian.org/debian/pool/main/
 https://raw.githubusercontent.com/ApioLab/phantomjs-2.1.1-linux-arm/master/phantomjs-2.1.1-linux-arm.tar.bz2
 https://github.com/shabadoo75/phantomjs-2.1.1-raspberrypi-armv7/raw/master/stretch/phantomjs [NOT working ?]
+
+http://launchpadlibrarian.net/362322295/libssl1.0.0_1.0.2n-1ubuntu5_armhf.deb
