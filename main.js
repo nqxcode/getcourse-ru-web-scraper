@@ -1,6 +1,6 @@
 const cheerio = require("cheerio");
 require('dotenv').config({ path: __dirname + '/.env' })
-const {fetch} = require(__dirname + "/scrapers/fetch.js");
+const {fetch} = require(__dirname + "/scraper/fetch.js");
 const {MD5} = require(__dirname + "/lib/md5");
 let config = require(__dirname + "/config/config.json")
 let trainings = require(__dirname + `/config/trainings/${process.env.SCRAPPER_TRAINING_CONFIG_DIR}/trainings.json`);
