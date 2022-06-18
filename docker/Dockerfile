@@ -96,7 +96,7 @@ ADD ./cmd cmd
 RUN chmod a+rx cmd/run.sh
 ADD ./config config
 ADD ./lib lib
-ADD ./scrapers scrapers
+ADD ./scraper scraper
 COPY ./main.js main.js
 COPY ./start.sh start.sh
 RUN chmod a+rx start.sh
