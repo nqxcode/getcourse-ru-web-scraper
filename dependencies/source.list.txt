@@ -1,5 +1,13 @@
+[DEBIAN LIBS REPO]
 http://ftp.cz.debian.org/debian/pool/main/
-https://raw.githubusercontent.com/ApioLab/phantomjs-2.1.1-linux-arm/master/phantomjs-2.1.1-linux-arm.tar.bz2
-https://github.com/shabadoo75/phantomjs-2.1.1-raspberrypi-armv7/raw/master/stretch/phantomjs [NOT working ?]
 
-http://launchpadlibrarian.net/362322295/libssl1.0.0_1.0.2n-1ubuntu5_armhf.deb
+[WORK]
+https://mirrors.wikimedia.org/debian/pool/main/o/openssl1.0/libssl1.0.2_1.0.2u-1~deb9u1_armhf.deb [Working]
+http://ftp.debian.org/debian/pool/main/i/icu/libicu57_57.1-6+deb9u4_armhf.deb [Working]
+https://github.com/shabadoo75/phantomjs-2.1.1-raspberrypi-armv7/raw/master/stretch/phantomjs [Working]
+
+
+[TROUBLES]
+http://ftp.us.debian.org/debian/pool/main/p/phantomjs/phantomjs_2.1.1+dfsg-2_armhf.deb [NOT working, crashing after some work]
+http://launchpadlibrarian.net/362322295/libssl1.0.0_1.0.2n-1ubuntu5_armhf.deb [Maybe working]
+https://raw.githubusercontent.com/ApioLab/phantomjs-2.1.1-linux-arm/master/phantomjs-2.1.1-linux-arm.tar.bz2 [Maybe working, need libicu5.2]
