@@ -2,7 +2,7 @@ const path = require("path");
 const childProcess = require("child_process");
 
 // path to PhantomJS bin
-const phantomJsPath = __dirname + '/../bin/phantomjs';
+const phantomJsPath = process.env.SCRAPPER_PHANTOMJS_BIN;
 
 exports.fetch = function(url) {
   console.log(`Fetch ${url}`)
