@@ -18,6 +18,8 @@ cp .env.sample .env
 ```
 Основные настройки в файле ```.env```, пример:
 ```
+SCRAPPER_PHANTOMJS_BIN=/path/to/deps/amd64/bin/phantomjs
+
 SCRAPPER_BASE_URL=https://myyestoday.ru
 SCRAPPER_TRAINING_CONFIG_DIR=myyestoday.ru
 
