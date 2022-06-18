@@ -1,5 +1,5 @@
 {
-  "name": "webscraper.ru",
+  "name": "webscraper",
   "version": "1.0.0",
   "description": "Web-scraper for getcourse.ru",
   "main": "main.js",
