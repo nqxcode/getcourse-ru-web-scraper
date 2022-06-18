@@ -35,9 +35,10 @@ RUN dpkg -i /tmp/deps/armhf/lib/libicu57_57.1-6+deb9u4_armhf.deb
 COPY ./deps/armhf/bin/yt-dlp /usr/local/bin/yt-dlp
 RUN chmod a+rx /usr/local/bin/yt-dlp
 
-#RUN wget https://github.com/shabadoo75/phantomjs-2.1.1-raspberrypi-armv7/raw/master/stretch/phantomjs -O /usr/local/bin/phantomjs
 COPY ./deps/armhf/bin/phantomjs /usr/local/bin/phantomjs
 RUN chmod a+rx /usr/local/bin/phantomjs
+
+COPY ./deps/node_modules.tar.gz /home/webscraper/app/node_modules.tar.gz
 
 ARG USER_GID=1000
 ARG USER_UID=1000
@@ -53,6 +54,8 @@ RUN apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/deps
+
+RUN chown -R webscraper:webscraper /home/webscraper
 
 USER webscraper
 
@@ -87,8 +90,6 @@ COPY ./.npmrc /root/.npmrc
 COPY ./.npmrc /home/webscraper/.npmrc
 RUN chown webscraper:webscraper /home/webscraper/.npmrc
 
-
-RUN mkdir -p /home/webscraper/app
 WORKDIR /home/webscraper/app
 
 COPY ./bin/phantomjs bin/phantomjs
@@ -109,6 +110,8 @@ COPY ./package-lock.json package-lock.json
 RUN chown -R webscraper:webscraper /home/webscraper/app
 
 USER webscraper
-RUN npm install
+
+RUN tar xzf /home/webscraper/app/node_modules.tar.gz -C /home/webscraper/app/
+RUN rm /home/webscraper/app/node_modules.tar.gz
 
 ENTRYPOINT /home/webscraper/app/start.sh ; tail -F /home/webscraper/app/scraper.log
