@@ -105,6 +105,7 @@ COPY ./package.json package.json
 COPY ./package-lock.json package-lock.json
 
 RUN chown -R webscraper:webscraper /home/webscraper/app
+RUN chown -h webscraper:webscraper /home/webscraper/logs
 
 USER webscraper
 
