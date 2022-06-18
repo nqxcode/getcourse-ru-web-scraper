@@ -1,6 +1,0 @@
-#!/bin/bash
-
-export QT_QPA_PLATFORM=offscreen
-export XDG_RUNTIME_DIR=/tmp/runtime-webscraper
-
-/usr/bin/phantomjs $@
