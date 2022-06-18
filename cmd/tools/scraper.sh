@@ -19,7 +19,8 @@ touch "$scraper_log"
 download_log="${log_dir}/download.log"
 touch "$download_log"
 
-echo "$download_log" > "${DIR}/../../download-dir.txt"
+ln -s "$scraper_log" "${DIR}/../../scraper.log"
+ln -s "$download_log" "${DIR}/../../download.log"
 
 node "${DIR}/../../main.js" > "$scraper_log" &
 scraper_pid=$!

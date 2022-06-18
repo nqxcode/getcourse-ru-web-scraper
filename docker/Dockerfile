@@ -95,10 +95,13 @@ COPY ./bin/phantomjs bin/phantomjs
 RUN chmod a+rx bin/phantomjs
 
 ADD ./cmd cmd
+RUN chmod a+rx cmd/run.sh
 ADD ./config config
 ADD ./lib lib
 ADD ./scrapers scrapers
 COPY ./main.js main.js
+COPY ./start.sh start.sh
+RUN chmod a+rx start.sh
 
 COPY ./package.json package.json
 COPY ./package-lock.json package-lock.json
@@ -108,4 +111,4 @@ RUN chown -R webscraper:webscraper /home/webscraper/app
 USER webscraper
 RUN npm install
 
-ENTRYPOINT [ "tail", "-f", "/dev/null" ]
+ENTRYPOINT /home/webscraper/app/start.sh ; tail -F /home/webscraper/app/scraper.log
