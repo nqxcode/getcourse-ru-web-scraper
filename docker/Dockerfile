@@ -104,8 +104,8 @@ RUN chmod a+rx start.sh
 COPY ./package.json package.json
 COPY ./package-lock.json package-lock.json
 
-RUN chown -R webscraper:webscraper /home/webscraper/app
-RUN chown -h webscraper:webscraper /home/webscraper/logs
+RUN chown -R webscraper:webscraper app
+RUN chown -h webscraper:webscraper logs download
 
 USER webscraper
 
