@@ -1,4 +1,5 @@
-FROM arm32v7/ubuntu:focal
+#FROM arm32v7/ubuntu:focal
+FROM arm32v7/debian:buster
 
 USER root
 
@@ -7,7 +8,7 @@ ENV TZ ${TZ}
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive 
 
 ENV PACKAGES="bash \
     bash-completion \
@@ -22,17 +23,17 @@ ENV PACKAGES="bash \
     build-essential \
     ca-certificates \
     "
-RUN apt-get update
+RUN apt-get update 
 RUN apt-get install -y --no-install-recommends ${PACKAGES}
-
-RUN apt-get install -y --no-install-recommends ffmpeg
-RUN apt-get install -y --no-install-recommends python3
-RUN apt-get install -y --no-install-recommends screen
-RUN apt-get install -y --no-install-recommends dialog
+RUN apt-get install -y --no-install-recommends ffmpeg python3 screen dialog
+RUN apt-get install -y --no-install-recommends htop
+#RUN apt-get install -y --no-install-recommends phantomjs
+#RUN mkdir /tmp/runtime-webscraper
+#RUN chmod 0700 /tmp/runtime-webscraper
 
 ADD ./deps /tmp/deps
 
-RUN dpkg -i /tmp/deps/libssl1.0.0_1.0.2n-1ubuntu5_armhf.deb
+RUN dpkg -i /tmp/deps/libssl1.0.2_1.0.2u-1~deb9u1_armhf.deb
 RUN dpkg -i /tmp/deps/libicu57_57.1-6+deb9u4_armhf.deb
 
 COPY ./deps/yt-dlp /usr/local/bin/yt-dlp
@@ -95,6 +96,7 @@ ADD ./cmd /home/webscraper/app/cmd
 ADD ./bin /home/webscraper/app/bin
 ADD ./main.js /home/webscraper/app/main.js
 
+#RUN wget https://github.com/shabadoo75/phantomjs-2.1.1-raspberrypi-armv7/raw/master/stretch/phantomjs -O /home/webscraper/app/bin/phantomjs
 RUN chmod a+rx /home/webscraper/app/bin/phantomjs
 RUN mkdir -p download
 
