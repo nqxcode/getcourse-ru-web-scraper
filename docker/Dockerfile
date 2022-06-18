@@ -92,9 +92,6 @@ RUN chown webscraper:webscraper /home/webscraper/.npmrc
 
 WORKDIR /home/webscraper/app
 
-COPY ./bin/phantomjs bin/phantomjs
-RUN chmod a+rx bin/phantomjs
-
 ADD ./cmd cmd
 RUN chmod a+rx cmd/run.sh
 ADD ./config config
