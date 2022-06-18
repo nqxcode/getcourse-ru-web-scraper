@@ -38,8 +38,6 @@ RUN chmod a+rx /usr/local/bin/yt-dlp
 COPY ./deps/armhf/bin/phantomjs /usr/local/bin/phantomjs
 RUN chmod a+rx /usr/local/bin/phantomjs
 
-COPY ./deps/node_modules.tar.gz /home/webscraper/app/node_modules.tar.gz
-
 ARG USER_GID=1000
 ARG USER_UID=1000
 
@@ -49,6 +47,8 @@ RUN addgroup --gid ${USER_GID} webscraper \
     && echo 'webscraper ALL=NOPASSWD: ALL' > /etc/sudoers.d/webscraper \
     && chmod 0440 /etc/sudoers.d/webscraper \
     && visudo --check
+
+COPY ./deps/node_modules.tar.gz /home/webscraper/app/node_modules.tar.gz
 
 RUN apt-get -y autoremove \
     && apt-get clean \
