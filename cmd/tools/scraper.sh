@@ -19,7 +19,10 @@ touch "$scraper_log"
 download_log="${log_dir}/download.log"
 touch "$download_log"
 
+rm -f "${DIR}/../../scraper.log"
 ln -s "$scraper_log" "${DIR}/../../scraper.log"
+
+rm -f "${DIR}/../../download.log"
 ln -s "$download_log" "${DIR}/../../download.log"
 
 node "${DIR}/../../main.js" > "$scraper_log" &
