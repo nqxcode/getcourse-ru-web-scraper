@@ -102,7 +102,7 @@ ADD ./lib lib
 ADD ./scraper scraper
 COPY ./main.js main.js
 COPY ./docker-entrypoint.sh docker-entrypoint.sh
-RUN chmod a+rx start.sh
+RUN chmod a+rx docker-entrypoint.sh
 
 COPY ./package.json package.json
 COPY ./package-lock.json package-lock.json
