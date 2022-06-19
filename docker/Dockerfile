@@ -9,6 +9,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+
 ENV PACKAGES="bash \
     bash-completion \
     wget \
@@ -30,6 +31,19 @@ ENV PACKAGES="bash \
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends ${PACKAGES}
 
+ARG USER_GID=1000
+ARG USER_UID=1000
+
+RUN addgroup --gid ${USER_GID} webscraper \
+    && adduser --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password --shell=/bin/bash --ingroup=webscraper --uid=${USER_UID} webscraper \
+    && chown -R webscraper:webscraper /opt \
+    && echo 'webscraper ALL=NOPASSWD: ALL' > /etc/sudoers.d/webscraper \
+    && chmod 0440 /etc/sudoers.d/webscraper \
+    && visudo --check
+
+RUN mkdir /home/webscraper/app
+RUN chown webscraper:webscraper /home/webscraper/app
+
 ADD ./deps /tmp/deps
 
 RUN dpkg -i /tmp/deps/armhf/lib/libssl1.0.2_1.0.2u-1~deb9u1_armhf.deb
@@ -41,24 +55,13 @@ RUN chmod a+rx /usr/local/bin/yt-dlp
 COPY ./deps/armhf/bin/phantomjs /usr/local/bin/phantomjs
 RUN chmod a+rx /usr/local/bin/phantomjs
 
-ARG USER_GID=1000
-ARG USER_UID=1000
-
-RUN addgroup --gid ${USER_GID} webscraper \
-    && adduser --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password --shell=/bin/bash --ingroup=webscraper --uid=${USER_UID} webscraper \
-    && chown -R webscraper:webscraper /opt \
-    && echo 'webscraper ALL=NOPASSWD: ALL' > /etc/sudoers.d/webscraper \
-    && chmod 0440 /etc/sudoers.d/webscraper \
-    && visudo --check
-
 COPY ./deps/node_modules.tar.gz /home/webscraper/app/node_modules.tar.gz
+RUN chown webscraper:webscraper /home/webscraper/app/node_modules.tar.gz
 
 RUN apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/deps
-
-RUN chown -R webscraper:webscraper /home/webscraper
 
 USER webscraper
 
@@ -93,6 +96,8 @@ COPY ./.npmrc /root/.npmrc
 COPY ./.npmrc /home/webscraper/.npmrc
 RUN chown webscraper:webscraper /home/webscraper/.npmrc
 
+USER webscraper
+
 WORKDIR /home/webscraper/app
 
 ADD ./cmd cmd
@@ -106,10 +111,6 @@ RUN chmod a+rx docker-entrypoint.sh
 
 COPY ./package.json package.json
 COPY ./package-lock.json package-lock.json
-
-RUN chown -R webscraper:webscraper /home/webscraper/app
-
-USER webscraper
 
 RUN tar xzf /home/webscraper/app/node_modules.tar.gz -C /home/webscraper/app/
 RUN rm /home/webscraper/app/node_modules.tar.gz
