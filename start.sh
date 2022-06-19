@@ -7,4 +7,4 @@ rm -f "${DIR}/download.log"
 
 nohup bash -c cmd/run.sh &
 
-tail -F "${DIR}/scraper.log"
+tail -F "${DIR}/scraper.log" 2>/dev/null
