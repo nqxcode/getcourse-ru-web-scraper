@@ -96,21 +96,24 @@ COPY ./.npmrc /root/.npmrc
 COPY ./.npmrc /home/webscraper/.npmrc
 RUN chown webscraper:webscraper /home/webscraper/.npmrc
 
-USER webscraper
-
 WORKDIR /home/webscraper/app
 
 ADD ./cmd cmd
 RUN chmod a+rx cmd/run.sh
+RUN chmod a+rx cmd/tools/download.sh
+RUN chmod a+rx cmd/tools/scraper.sh
 ADD ./config config
 ADD ./lib lib
 ADD ./scraper scraper
 COPY ./main.js main.js
 COPY ./docker-entrypoint.sh docker-entrypoint.sh
 RUN chmod a+rx docker-entrypoint.sh
-
 COPY ./package.json package.json
 COPY ./package-lock.json package-lock.json
+
+RUN chown -R webscraper:webscraper /home/webscraper/app
+
+USER webscraper
 
 RUN tar xzf /home/webscraper/app/node_modules.tar.gz -C /home/webscraper/app/
 RUN rm /home/webscraper/app/node_modules.tar.gz
