@@ -111,4 +111,4 @@ USER webscraper
 RUN tar xzf /home/webscraper/app/node_modules.tar.gz -C /home/webscraper/app/
 RUN rm /home/webscraper/app/node_modules.tar.gz
 
-ENTRYPOINT /home/webscraper/app/start.sh ; tail -F /home/webscraper/app/scraper.log
+ENTRYPOINT ["/home/webscraper/app/start.sh"]

@@ -6,3 +6,5 @@ rm -f "${DIR}/scraper.log"
 rm -f "${DIR}/download.log"
 
 nohup bash -c cmd/run.sh &
+
+tail -F "${DIR}/scraper.log"
