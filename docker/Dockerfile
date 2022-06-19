@@ -21,11 +21,14 @@ ENV PACKAGES="bash \
     sudo \
     build-essential \
     ca-certificates \
+    ffmpeg \
+    python3 \
+    screen \
+    dialog \
+    htop \
     "
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends ${PACKAGES}
-RUN apt-get install -y --no-install-recommends ffmpeg python3 screen dialog
-RUN apt-get install -y --no-install-recommends htop
 
 ADD ./deps /tmp/deps
 
@@ -98,7 +101,7 @@ ADD ./config config
 ADD ./lib lib
 ADD ./scraper scraper
 COPY ./main.js main.js
-COPY ./start.sh start.sh
+COPY ./docker-entrypoint.sh docker-entrypoint.sh
 RUN chmod a+rx start.sh
 
 COPY ./package.json package.json
