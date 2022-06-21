@@ -17,7 +17,7 @@ $ python3 -m pip install -U yt-dlp
 
 Утилиту phantomjs устанавливать из папки deps:
 ```
-sudo сp deps/{архитектура}/bin/phantomjs /usr/local/bin/phantomjs
+sudo сp deps/{amd64 или armhf}/bin/phantomjs /usr/local/bin/phantomjs
 sudo chmod a+rx /usr/local/bin/phantomjs
 ```
 
