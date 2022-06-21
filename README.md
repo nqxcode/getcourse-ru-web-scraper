@@ -39,7 +39,7 @@ SCRAPPER_AUTH_COOKIE_DOMAIN=.myyestoday.ru
 
 SCRAPPER_DOWNLOAD_PATH="/home/andrey/Рабочий стол/Курсы/Английский/myyestoday.ru"
 
-SCRAPPER_PHANTOMJS_BIN=/path/to/deps/amd64/bin/phantomjs
+SCRAPPER_PHANTOMJS_BIN=/usr/local/bin/phantomjs
 SCRAPPER_PHANTOMJS_MAX_BUFFER=2048
 ```
 
