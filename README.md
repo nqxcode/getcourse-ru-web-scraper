@@ -15,9 +15,10 @@ $ sudo apt install ffmpeg
 $ python3 -m pip install -U yt-dlp
 ```
 
-Но phantomjs устанавливать из папки deps
+Утилиту phantomjs устанавливать из папки deps:
 ```
-dpkg -i phantomjs.deb
+sudo сp deps/armhf/bin/phantomjs /usr/local/bin/phantomjs
+sudo chmod a+rx /usr/local/bin/phantomjs
 ```
 
 
