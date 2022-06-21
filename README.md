@@ -3,6 +3,7 @@ Web scraper для видеокурсов с getcourse.ru
 
 ## Docker
 Настройку вебскрапера на работу в docker-контейнере смотреть здесь:
+
 https://hub.docker.com/repository/docker/nqxcode/getcourse-ru-webscraper
 
 ## Установка зависимостей 
