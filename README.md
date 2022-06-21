@@ -7,13 +7,19 @@ Web scraper для видеокурсов с getcourse.ru
 https://hub.docker.com/repository/docker/nqxcode/getcourse-ru-webscraper
 
 ## Установка зависимостей 
-Для работы веб-скрапера необходимо установить **nodejs**, **ffmpeg**, **yt-dlp** 
+Для работы веб-скрапера необходимо установить **nodejs**, **ffmpeg**, **yt-dlp**, **phantomjs**
 
 ```bash
 $ sudo apt install nodejs
 $ sudo apt install ffmpeg
 $ python3 -m pip install -U yt-dlp
 ```
+
+Но phantomjs устанавливать из папки deps
+```
+dpkg -i phantomjs.deb
+```
+
 
 ## Конфигурация
 ### Создание файла конфигурации
