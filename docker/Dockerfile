@@ -51,6 +51,7 @@ RUN dpkg -i /tmp/deps/armhf/lib/libicu57_57.1-6+deb9u4_armhf.deb
 
 COPY ./deps/armhf/bin/yt-dlp /usr/local/bin/yt-dlp
 RUN chmod a+rx /usr/local/bin/yt-dlp
+RUN /usr/local/bin/yt-dlp -U
 
 COPY ./deps/armhf/bin/phantomjs /usr/local/bin/phantomjs
 RUN chmod a+rx /usr/local/bin/phantomjs
