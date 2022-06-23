@@ -34,7 +34,8 @@ let resolve = function (html) {
         let videoNumber = 1;
         do {
             if (matched && typeof matched['groups'] !== 'undefined' && typeof matched['groups']['url'] !== 'undefined') {
-                let videoUrl = matched['groups']['url']
+                let videoUrl = matched['groups']['url'].replaceAll("&amp;", "&")
+
                 let videoUrlHash = MD5(videoUrl);
 
                 let videoName = lessonTitle.trim().replace(/\.$/, '') + (videoNumber > 1 ? `-${videoNumber}` : '');
