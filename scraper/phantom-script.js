@@ -15,6 +15,16 @@ phantom.addCookie({
   'expires': new Date().getTime() + 100000 * 60 * 60 /* <-- expires in 100 hour */
 });
 
+phantom.addCookie({
+  'name': env.SCRAPPER_CSRF_COOKIE_NAME, /* required property */
+  'value': env.SCRAPPER_CSRF_COOKIE_VALUE, /* required property */
+  'domain': env.SCRAPPER_CSRF_COOKIE_DOMAIN,
+  'path': '/', /* required property */
+  'httponly': true,
+  'secure': false,
+  'expires': new Date().getTime() + 100000 * 60 * 60 /* <-- expires in 100 hour */
+});
+
 page.settings.userAgent = config.scrapper.phantomjs.webpage.settings.userAgent;
 
 // default viewport size is small, change it to 1366x768
