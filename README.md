@@ -2,7 +2,7 @@
 Web scraper для видеокурсов с getcourse.ru
 
 ## Docker
-Настройку вебскрапера на работу в docker-контейнере для архитектуры armv7 смотреть здесь:
+Настройку вебскрапера на работу в docker-контейнере для архитектуры armv7 или amd64 смотреть здесь:
 
 https://hub.docker.com/repository/docker/nqxcode/getcourse-ru-webscraper
 
