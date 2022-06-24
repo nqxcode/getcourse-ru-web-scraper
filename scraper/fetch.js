@@ -2,13 +2,13 @@ const path = require("path");
 const childProcess = require("child_process");
 
 // path to PhantomJS bin
-const phantomJsPath = process.env.SCRAPPER_PHANTOMJS_BIN;
+const phantomJsPath = process.env.SCRAPPER_PHANTOMJS_BIN || '/usr/local/bin/phantomjs'
 
 exports.fetch = function(url) {
   console.log(`Fetch ${url}`)
   // execute phantom-script.js file via PhantomJS
   const childArgs = [path.join(__dirname, "phantom-script.js")];
-  let maxBuffer = process.env.SCRAPPER_PHANTOMJS_MAX_BUFFER
+  let maxBuffer = process.env.SCRAPPER_PHANTOMJS_MAX_BUFFER || 1664
   const phantom = childProcess.execFile(phantomJsPath, childArgs, {
     env: {
       URL: url,
