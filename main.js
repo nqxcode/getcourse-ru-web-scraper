@@ -4,6 +4,7 @@ const {fetch} = require(__dirname + "/scraper/fetch.js");
 const {MD5} = require(__dirname + "/lib/md5");
 let config = require(__dirname + "/config/config.json")
 let trainings = require(__dirname + `/config/trainings/${process.env.SCRAPPER_TRAINING_CONFIG_DIR}/trainings.json`);
+let rootPath = process.env.SCRAPPER_DOWNLOAD_PATH || '/home/webscraper/app/download'
 
 const baseURL = process.env.SCRAPPER_BASE_URL;
 
@@ -40,7 +41,6 @@ let resolve = function (html) {
 
                 let videoName = lessonTitle.trim().replace(/\.$/, '') + (videoNumber > 1 ? `-${videoNumber}` : '');
                 let videoExtension = config.scrapper.downloader.outVideo.extension
-                let rootPath = process.env.SCRAPPER_DOWNLOAD_PATH
                 let relativePath = outVideoDir
 
                 rootPath += rootPath.endsWith("/") ? "" : "/"
