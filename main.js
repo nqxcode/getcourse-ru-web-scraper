@@ -34,7 +34,7 @@ let resolve = function (html) {
         let videoNumber = 1;
         do {
             if (matched && typeof matched['groups'] !== 'undefined' && typeof matched['groups']['url'] !== 'undefined') {
-                let videoUrl = matched['groups']['url'].replaceAll("&amp;", "&")
+                let videoUrl = matched['groups']['url'].replace(/&amp;/g, "&")
 
                 let videoUrlHash = MD5(videoUrl);
 
