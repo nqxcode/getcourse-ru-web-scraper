@@ -22,6 +22,9 @@ ENV PACKAGES="bash \
     sudo \
     build-essential \
     ca-certificates \
+    multiarch-support \
+    libxslt-dev \
+    libhyphen-dev \
     ffmpeg \
     python3 \
     screen \
@@ -49,6 +52,7 @@ ADD ./deps /tmp/deps
 RUN dpkg -i /tmp/deps/amd64/lib/libicu55_55.1-7_amd64.deb
 RUN dpkg -i /tmp/deps/amd64/lib/libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
 RUN dpkg -i /tmp/deps/amd64/lib/libssl1.0.0_1.0.2n-1ubuntu5.6_amd64.deb
+RUN dpkg -i /tmp/deps/amd64/lib/libjpeg8_8d-1+deb7u1_amd64.deb
 
 COPY ./deps/amd64/bin/yt-dlp /usr/local/bin/yt-dlp
 RUN chmod a+rx /usr/local/bin/yt-dlp
