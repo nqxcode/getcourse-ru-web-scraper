@@ -14,7 +14,8 @@
     "parser": {
       "patterns": [
         "data-master=\"(?<url>[^\"]+)\"",
-        "href=\"(?<url>(https?\\:)?(//)?www.youtube.com/watch[^\"]+)"
+        "href=\"(?<url>(https?\\:)?(//)?www.youtube.com/watch[^\"]+)",
+        "masterPlaylistUrl\"\\:\"(?<url>(https?\\:)?(\\\/\\\/)?[^\"]+)"
       ],
       "flags": "g"
     },
