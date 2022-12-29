@@ -53,5 +53,63 @@
       "/teach/control/lesson/view/id/227187846",
       "/teach/control/lesson/view/id/227395995"
     ]
+  },
+  {
+    "title": "Основы мануальной терапии (блок 2)",
+    "paths": [
+      "/teach/control/lesson/view/id/228646817",
+      "/teach/control/lesson/view/id/228646844",
+      "/teach/control/lesson/view/id/228646904",
+      "/teach/control/lesson/view/id/228646957",
+      "/teach/control/lesson/view/id/228647030",
+      "/teach/control/lesson/view/id/228647044",
+      "/teach/control/lesson/view/id/228647069",
+      "/teach/control/lesson/view/id/228647114",
+      "/teach/control/lesson/view/id/228649235",
+      "/teach/control/lesson/view/id/228654222",
+      "/teach/control/lesson/view/id/228658582",
+      "/teach/control/lesson/view/id/228661536",
+      "/teach/control/lesson/view/id/228661720",
+      "/teach/control/lesson/view/id/228661816",
+      "/teach/control/lesson/view/id/228662078",
+      "/teach/control/lesson/view/id/228662108",
+      "/teach/control/lesson/view/id/228662133",
+      "/teach/control/lesson/view/id/228662151",
+      "/teach/control/lesson/view/id/228662247",
+      "/teach/control/lesson/view/id/228665074",
+      "/teach/control/lesson/view/id/228665085",
+      "/teach/control/lesson/view/id/228665116",
+      "/teach/control/lesson/view/id/228665459",
+      "/teach/control/lesson/view/id/228665463",
+      "/teach/control/lesson/view/id/228666827",
+      "/teach/control/lesson/view/id/228668094",
+      "/teach/control/lesson/view/id/228668450",
+      "/teach/control/lesson/view/id/228668465",
+      "/teach/control/lesson/view/id/228668482",
+      "/teach/control/lesson/view/id/228668508",
+      "/teach/control/lesson/view/id/228668605"
+    ]
+  },
+  {
+    "title": "Основы мануальной терапии (блок 3)",
+    "paths": [
+      "/teach/control/lesson/view/id/246426594",
+      "/teach/control/lesson/view/id/246426633",
+      "/teach/control/lesson/view/id/246426739",
+      "/teach/control/lesson/view/id/246426853",
+      "/teach/control/lesson/view/id/246426984",
+      "/teach/control/lesson/view/id/246427019",
+      "/teach/control/lesson/view/id/246453553",
+      "/teach/control/lesson/view/id/246477260",
+      "/teach/control/lesson/view/id/246477601",
+      "/teach/control/lesson/view/id/246478602",
+      "/teach/control/lesson/view/id/246478670",
+      "/teach/control/lesson/view/id/246478799",
+      "/teach/control/lesson/view/id/246478984",
+      "/teach/control/lesson/view/id/246540128",
+      "/teach/control/lesson/view/id/246544061",
+      "/teach/control/lesson/view/id/246546377",
+      "/teach/control/lesson/view/id/246426610"
+    ]
   }
 ]
